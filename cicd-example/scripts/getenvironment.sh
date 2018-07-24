@@ -7,10 +7,8 @@ set -e
 # FOO and BAZ shell variables.
 # jq will ensure that the values are properly quoted
 # and escaped for consumption by the shell.
-eval "$(jq -r '@sh "WORKSPACE=\(.workspace) PROJECTCODE=\(.projectcode) URL=\(.url)"')"
+#eval "$(jq -r '@sh "WORKSPACE=\(.workspace) PROJECTCODE=\(.projectcode) URL=\(.url)"')"
 
-echo "WORKSPACE: " $WORKSPACE
-echo "PROJECTCODE: " $PROJECTCODE
-echo "URL: " $URL
+
 # Placeholder for whatever data-fetching logic your script implements
-curl --header "querytext: $WORKSPACE-$PROJECTCODE" $URL
+curl --header "querytext: development-8675309" $URL
