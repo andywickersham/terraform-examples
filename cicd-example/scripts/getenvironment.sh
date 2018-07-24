@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Exit if any of the intermediate steps fail
-set -e
+#set -e
 
 # Extract "foo" and "baz" arguments from the input into
 # FOO and BAZ shell variables.
