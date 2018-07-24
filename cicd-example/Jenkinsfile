@@ -24,9 +24,9 @@ pipeline {
             steps {
                 dir('cicd-example/networking/'){
                     sh 'terraform --version'
-                    sh "terraform init -input=false -plugin-dir=/var/jenkins_home/terraform_plugins \ 
-                    --backend-config='dynamodb_table=$DYNAMODB_STATELOCK' --backend-config='bucket=$NETWORKING_BUCKET' \ 
-                    --backend-config='access_key=$NETWORKING_ACCESS_KEY' --backend-config='secret_key=$NETWORKING_SECRET_KEY'"
+                    sh "terraform init -input=false -plugin-dir=/var/jenkins_home/terraform_plugins \
+                     --backend-config='dynamodb_table=$DYNAMODB_STATELOCK' --backend-config='bucket=$ NETWORKING_BUCKET' \
+                     --backend-config='access_key=$NETWORKING_ACCESS_KEY' --backend-config='secret_key=$NETWORKING_SECRET_KEY'"
                     sh "echo \$PWD"
                     sh "whoami"
                 }
@@ -42,7 +42,7 @@ pipeline {
                             sh "terraform workspace select ${params.WORKSPACE}"
                         }
                         sh "terraform plan -var 'aws_access_key=$NETWORKING_ACCESS_KEY' -var 'aws_secret_key=$NETWORKING_SECRET_KEY' \
-                        -var 'url=${params.LAMBDA_URL}' -out terraform-networking.tfplan;echo \$? > status"
+                         -var 'url=${params.LAMBDA_URL}' -out terraform-networking.tfplan;echo \$? > status"
                         stash name: "terraform-networking-plan", includes: "terraform-networking.tfplan"
                     }
                 }
@@ -72,9 +72,9 @@ pipeline {
         stage('ApplicationInit'){
             steps {
                 dir('cicd-example/applications/'){
-                    sh "terraform init -input=false -plugin-dir=/var/jenkins_home/terraform_plugins \ 
-                    --backend-config='dynamodb_table=$DYNAMODB_STATELOCK' --backend-config='bucket=$APPLICATION_BUCKET' \ 
-                    --backend-config='access_key=$APPLICATION_ACCESS_KEY' --backend-config='secret_key=$APPLICATION_SECRET_KEY'"
+                    sh "terraform init -input=false -plugin-dir=/var/jenkins_home/terraform_plugins \
+                     --backend-config='dynamodb_table=$DYNAMODB_STATELOCK' --backend-config='bucket=$APPLICATION_BUCKET' \
+                     --backend-config='access_key=$APPLICATION_ACCESS_KEY' --backend-config='secret_key=$APPLICATION_SECRET_KEY'"
                     sh "echo \$PWD"
                     sh "whoami"
                 }
