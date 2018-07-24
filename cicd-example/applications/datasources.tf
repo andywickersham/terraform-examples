@@ -47,7 +47,7 @@ data "aws_ami" "ubuntu" {
 }
 
 data "external" "configuration" {
-  program = ["bash", "../scripts/getenvironment.sh"]
+  program = ["bash", "../scripts/getenvironment2.sh"]
 
   # Optional request headers
   query = {

@@ -24,9 +24,9 @@ pipeline {
             steps {
                 dir('cicd-example/networking/'){
                     sh 'terraform --version'
-                    sh "terraform init -input=false -plugin-dir=/var/jenkins_home/terraform_plugins \
-                     --backend-config='dynamodb_table=$DYNAMODB_STATELOCK' --backend-config='bucket=$NETWORKING_BUCKET' \
-                     --backend-config='access_key=$NETWORKING_ACCESS_KEY' --backend-config='secret_key=$NETWORKING_SECRET_KEY'"
+                    sh "terraform init -input=false -plugin-dir=/var/jenkins_home/terraform_plugins \ 
+                    --backend-config='dynamodb_table=$DYNAMODB_STATELOCK' --backend-config='bucket=$NETWORKING_BUCKET' \ 
+                    --backend-config='access_key=$NETWORKING_ACCESS_KEY' --backend-config='secret_key=$NETWORKING_SECRET_KEY'"
                     sh "echo \$PWD"
                     sh "whoami"
                 }
@@ -72,9 +72,9 @@ pipeline {
         stage('ApplicationInit'){
             steps {
                 dir('cicd-example/applications/'){
-                    sh "terraform init -input=false -plugin-dir=/var/jenkins_home/terraform_plugins \
-                     --backend-config='dynamodb_table=$DYNAMODB_STATELOCK' --backend-config='bucket=$APPLICATION_BUCKET' \
-                     --backend-config='access_key=$APPLICATION_ACCESS_KEY' --backend-config='secret_key=$APPLICATION_SECRET_KEY'"
+                    sh "terraform init -input=false -plugin-dir=/var/jenkins_home/terraform_plugins \ 
+                    --backend-config='dynamodb_table=$DYNAMODB_STATELOCK' --backend-config='bucket=$APPLICATION_BUCKET' \ 
+                    --backend-config='access_key=$APPLICATION_ACCESS_KEY' --backend-config='secret_key=$APPLICATION_SECRET_KEY'"
                     sh "echo \$PWD"
                     sh "whoami"
                 }
