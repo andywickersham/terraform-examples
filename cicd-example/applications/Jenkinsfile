@@ -37,8 +37,7 @@ pipeline {
                         } catch (err) {
                             sh "terraform workspace select ${params.WORKSPACE}"
                         }
-                        sh "terraform plan -var 'aws_access_key=$APPLICATION_ACCESS_KEY' -var 'aws_secret_key=$APPLICATION_SECRET_KEY' \
-                         -var 'url=${params.LAMBDA_URL}' -out terraform-application.tfplan;echo \$? > status"
+                        sh "terraform plan -var 'aws_access_key=$APPLICATION_ACCESS_KEY' -var 'aws_secret_key=$APPLICATION_SECRET_KEY' -var 'url=${params.LAMBDA_URL}' -out terraform-application.tfplan;echo \$? > status"
                         stash name: "terraform-application-plan", includes: "terraform-application.tfplan"
                     }
                 }
@@ -54,8 +53,7 @@ pipeline {
                     } catch (err) {
                         apply = false
                         dir('cicd-example/applications'){
-                            sh "terraform destroy -var 'aws_access_key=$APPLICATION_ACCESS_KEY' \
-                             -var 'aws_secret_key=$APPLICATION_SECRET_KEY' -var 'url=${params.LAMBDA_URL}' -force"
+                            sh "terraform destroy -var 'aws_access_key=$APPLICATION_ACCESS_KEY' -var 'aws_secret_key=$APPLICATION_SECRET_KEY' -var 'url=${params.LAMBDA_URL}' -force"
                         }
                          currentBuild.result = 'UNSTABLE'
                     }

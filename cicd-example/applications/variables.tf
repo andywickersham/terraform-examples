@@ -4,7 +4,7 @@ variable "network_remote_state_key" {
 }
 
 variable "network_remote_state_bucket" {
-  default = "ddt-networking"
+  default = "ddt-networking-aw"
 }
 
 variable "aws_access_key" {}
@@ -12,7 +12,7 @@ variable "aws_secret_key" {}
 
 #Web front end variables
 variable "key_name" {
-  default = "PluralsightKeys"
+  default = "tfdemo"
 }
 
 variable "ip_range" {
