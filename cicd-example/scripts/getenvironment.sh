@@ -11,4 +11,4 @@ set -e
 
 
 # Placeholder for whatever data-fetching logic your script implements
-curl --header "querytext: development-8675309" $URL
+curl --header "querytext: development-8675309" https://29kfghpw8k.execute-api.us-east-1.amazonaws.com/prod/tdd_ddb_query
